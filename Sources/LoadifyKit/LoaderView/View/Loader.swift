@@ -21,12 +21,21 @@ struct Loader: View {
         ZStack {
             overlayView
             VStack {
-                ProgressView(title)
+                ProgressView()
+                titleView
             }
+            .frame(width: 180, height: 80)
             .padding()
             .background(Blur())
-            .cornerRadius(10)
+            .cornerRadius(8)
         }
+    }
+    
+    private var titleView: some View {
+        Text("\(title)")
+            .padding(.top)
+            .font(.headline)
+            .foregroundColor(.gray)
     }
     
     @ViewBuilder
@@ -40,7 +49,8 @@ struct Loader: View {
 
 struct Loader_Previews: PreviewProvider {
     static var previews: some View {
-        Loader(title: "Loading", showOverlay: false)
+        Loader(title: "Fetching Details...", showOverlay: false)
+            .preferredColorScheme(.dark)
             .previewLayout(.sizeThatFits)
     }
 }

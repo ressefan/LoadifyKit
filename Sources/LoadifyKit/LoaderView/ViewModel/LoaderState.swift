@@ -12,7 +12,9 @@ public final class LoaderState: ObservableObject {
     @Published var isLoading: Bool = false
     private(set) var title: String = ""
     
-    public init() { }
+    public init() {
+        print("Loader State Init")
+    }
     
     public func showLoader(title: String) {
         self.title = title
