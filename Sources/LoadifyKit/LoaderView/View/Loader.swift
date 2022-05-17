@@ -20,7 +20,7 @@ struct Loader: View {
     var body: some View {
         ZStack {
             overlayView
-            VStack {
+            HStack(spacing: 16) {
                 ProgressView()
                 titleView
             }
