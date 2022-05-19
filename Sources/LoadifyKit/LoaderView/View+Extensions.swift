@@ -8,6 +8,12 @@
 import SwiftUI
 
 extension View {
+    /// This will return a loader from LoaderKit.
+    /// This functions helps you to register loader in the rootView and can be acessible by creating and instance of the **LoaderState**
+    /// - Parameters:
+    ///   - loaderState: Lifecycle of the loaderState
+    ///   - showOverlay: Bool property to add black background behind the loader when it is active. By default it is false
+    ///   - options: This gives some View of type Loader
     public func showAlert(
         loaderState: LoaderState,
         showOverlay: Bool = false,

@@ -34,21 +34,28 @@ struct Loader: View {
     private var horizontalLoader: some View {
         HStack(alignment: .center, spacing: 16) {
             ProgressView()
-            titleView
+            contentView
         }
     }
     
     private var verticalLoader: some View {
-        VStack(alignment: .center, spacing: 16) {
+        VStack(alignment: .center, spacing: 12) {
             ProgressView()
-            titleView
+            contentView
         }
     }
     
-    private var titleView: some View {
-        Text("\(title)")
-            .font(.headline)
-            .foregroundColor(.white)
+    private var contentView: some View {
+        VStack(spacing: 4) {
+            Text("\(title)")
+                .font(.headline)
+                .foregroundColor(.white)
+            Text("This is process takes time. Do not close the app")
+                .fixedSize(horizontal: false, vertical: true)
+                .font(.caption)
+                .foregroundColor(.gray)
+                .multilineTextAlignment(.center)
+        }
     }
     
     private func overlayView(_ canShowOverlay: Bool) -> some View {
@@ -58,8 +65,11 @@ struct Loader: View {
 
 struct Loader_Previews: PreviewProvider {
     static var previews: some View {
-        Loader(title: "Fetching details...", showOverlay: false, options: .init(style: .vertical))
-            .preferredColorScheme(.dark)
-            .previewLayout(.sizeThatFits)
+        Group {
+            Loader(title: "Fetching details...", showOverlay: false, options: .init(style: .vertical))
+            Loader(title: "Fetching details...", showOverlay: false, options: .init(style: .horizontal))
+        }
+        .preferredColorScheme(.dark)
+        .previewLayout(.sizeThatFits)
     }
 }
