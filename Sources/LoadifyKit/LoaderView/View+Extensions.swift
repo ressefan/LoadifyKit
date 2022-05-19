@@ -32,6 +32,22 @@ extension View {
         }
     }
     
+    public func addAlertView(
+        for alertAction: AlertViewAction
+    ) -> some View {
+        ZStack {
+            self.allowsHitTesting(!alertAction.isShowing)
+            if alertAction.isShowing {
+                AlertView(
+                    title: alertAction.title,
+                    subTitle: alertAction.subTitle,
+                    showOverlay: alertAction.showOverlay,
+                    options: alertAction.options
+                )
+            }
+        }
+    }
+    
     func loaderBackground() -> some View {
         modifier(LoaderBackground())
     }

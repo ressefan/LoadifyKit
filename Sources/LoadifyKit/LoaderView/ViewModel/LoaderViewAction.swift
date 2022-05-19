@@ -5,7 +5,7 @@
 //  Created by Vishweshwaran on 5/10/22.
 //
 
-import Foundation
+import SwiftUI
 
 public final class LoaderViewAction: ObservableObject {
     
