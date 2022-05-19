@@ -7,7 +7,7 @@
 
 import Foundation
 
-public final class LoaderState: ObservableObject {
+public final class LoaderViewAction: ObservableObject {
     
     @Published var isLoading: Bool = false
     private(set) var title: String = ""
@@ -18,7 +18,7 @@ public final class LoaderState: ObservableObject {
     }
     
     deinit {
-        print("LoaderState DeInit")
+        print("LoaderViewAction DeInit")
     }
     
     public func showLoader(title: String, subTitle: String? = nil) {

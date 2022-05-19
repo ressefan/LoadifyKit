@@ -1,5 +1,5 @@
 //
-//  Loader.swift
+//  LoaderView.swift
 //  Loadify
 //
 //  Created by Vishweshwaran on 5/9/22.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Loader: View {
+struct LoaderView: View {
     
     private let title: String
     private let subTitle: String?
@@ -70,8 +70,8 @@ struct Loader: View {
 struct Loader_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            Loader(title: "Fetching details...", subTitle: nil, showOverlay: false, options: .init(style: .vertical))
-            Loader(title: "Fetching details...", subTitle: nil, showOverlay: false, options: .init(style: .horizontal))
+            LoaderView(title: "Fetching details...", subTitle: nil, showOverlay: false, options: .init(style: .vertical))
+            LoaderView(title: "Fetching details...", subTitle: nil, showOverlay: false, options: .init(style: .horizontal))
         }
         .preferredColorScheme(.dark)
         .previewLayout(.sizeThatFits)
