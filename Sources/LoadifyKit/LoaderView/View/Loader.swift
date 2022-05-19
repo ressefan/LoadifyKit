@@ -10,11 +10,13 @@ import SwiftUI
 struct Loader: View {
     
     private let title: String
+    private let subTitle: String?
     private let showOverlay: Bool
     private let options: LoaderOptions
     
-    init(title: String, showOverlay: Bool, options: LoaderOptions) {
+    init(title: String, subTitle: String?, showOverlay: Bool, options: LoaderOptions) {
         self.title = title
+        self.subTitle = subTitle
         self.showOverlay = showOverlay
         self.options = options
     }
@@ -50,11 +52,13 @@ struct Loader: View {
             Text("\(title)")
                 .font(.headline)
                 .foregroundColor(.white)
-            Text("This is process takes time. Do not close the app")
-                .fixedSize(horizontal: false, vertical: true)
-                .font(.caption)
-                .foregroundColor(.gray)
-                .multilineTextAlignment(.center)
+            subTitle.map({
+                Text($0)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .font(.caption)
+                    .foregroundColor(.gray)
+                    .multilineTextAlignment(.center)
+            })
         }
     }
     
@@ -66,8 +70,8 @@ struct Loader: View {
 struct Loader_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            Loader(title: "Fetching details...", showOverlay: false, options: .init(style: .vertical))
-            Loader(title: "Fetching details...", showOverlay: false, options: .init(style: .horizontal))
+            Loader(title: "Fetching details...", subTitle: nil, showOverlay: false, options: .init(style: .vertical))
+            Loader(title: "Fetching details...", subTitle: nil, showOverlay: false, options: .init(style: .horizontal))
         }
         .preferredColorScheme(.dark)
         .previewLayout(.sizeThatFits)

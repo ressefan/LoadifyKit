@@ -22,7 +22,12 @@ extension View {
         ZStack {
             self.allowsHitTesting(!loaderState.isLoading)
             if loaderState.isLoading {
-                Loader(title: loaderState.title, showOverlay: showOverlay, options: options)
+                Loader(
+                    title: loaderState.title,
+                    subTitle: loaderState.subTitle,
+                    showOverlay: showOverlay,
+                    options: options
+                )
             }
         }
     }
