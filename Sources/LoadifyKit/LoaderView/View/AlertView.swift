@@ -22,15 +22,13 @@ struct AlertView: View {
     }
     
     var body: some View {
-        ZStack {
-            overlayView(showOverlay)
+//            overlayView(showOverlay)
             switch options.style {
             case .horizontal:
                 horizontalLoader.loaderBackground()
             case .vertical:
                 verticalLoader.loaderBackground()
             }
-        }
     }
     
     private var horizontalLoader: some View {

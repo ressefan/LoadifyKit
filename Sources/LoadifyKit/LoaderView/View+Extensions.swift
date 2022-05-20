@@ -20,7 +20,7 @@ extension View {
         options: LoaderOptions = LoaderOptions()
     ) -> some View {
         ZStack {
-            self.allowsHitTesting(!loaderAction.isLoading)
+            self
             if loaderAction.isLoading {
                 LoaderView(
                     title: loaderAction.title,
@@ -36,7 +36,7 @@ extension View {
         for alertAction: AlertViewAction
     ) -> some View {
         ZStack {
-            self.allowsHitTesting(!alertAction.isShowing)
+            self
             if alertAction.isShowing {
                 AlertView(
                     title: alertAction.title,
