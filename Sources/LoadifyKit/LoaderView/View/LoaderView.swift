@@ -7,21 +7,26 @@
 
 import SwiftUI
 
-struct LoaderView: View {
+public struct LoaderView: View {
     
-    private let title: String
-    private let subTitle: String?
-    private let showOverlay: Bool
-    private let options: LoaderOptions
+    public let title: String
+    public let subTitle: String?
+    public let showOverlay: Bool
+    public let options: LoaderOptions
     
-    init(title: String, subTitle: String?, showOverlay: Bool, options: LoaderOptions) {
+    public init(
+        title: String,
+        subTitle: String? = nil,
+        showOverlay: Bool = false,
+        options: LoaderOptions = .init(style: .horizontal)
+    ) {
         self.title = title
         self.subTitle = subTitle
         self.showOverlay = showOverlay
         self.options = options
     }
     
-    var body: some View {
+    public var body: some View {
         ZStack {
             overlayView(showOverlay)
             switch options.style {
