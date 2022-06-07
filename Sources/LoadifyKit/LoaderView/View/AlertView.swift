@@ -7,21 +7,26 @@
 
 import SwiftUI
 
-struct AlertView: View {
+public struct AlertView: View {
     
-    private let title: String
-    private let subTitle: String?
-    private let showOverlay: Bool
-    private let options: AlertOptions
+    public let title: String
+    public let subTitle: String?
+    public let showOverlay: Bool
+    public let options: AlertOptions
     
-    init(title: String, subTitle: String?, showOverlay: Bool, options: AlertOptions) {
+    public init(
+        title: String,
+        subTitle: String? = nil,
+        showOverlay: Bool = false,
+        options: AlertOptions = .init(alertType: .error)
+    ) {
         self.title = title
         self.subTitle = subTitle
         self.showOverlay = showOverlay
         self.options = options
     }
     
-    var body: some View {
+    public var body: some View {
         ZStack {
             overlayView(showOverlay)
             switch options.style {
