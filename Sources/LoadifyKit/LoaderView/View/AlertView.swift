@@ -52,7 +52,7 @@ public struct AlertView: View {
         VStack(alignment: .center, spacing: 8) {
             Image(systemName: options.alertType.rawValue)
                 .font(.largeTitle)
-                .foregroundColor(options.alertType == .error ? .red : .yellow)
+                .foregroundColor(options.alertType == .error ? .red : .green)
             contentView
         }
     }
@@ -84,7 +84,7 @@ struct AlertView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             AlertView(title: "Error", subTitle: "URL cannot be empty", showOverlay: false, options: .init(alertType: .error, style: .vertical))
-            AlertView(title: "Warning", subTitle: "Something went wrong", showOverlay: false, options: .init(alertType: .warning, style: .horizontal))
+            AlertView(title: "Warning", subTitle: "Something went wrong", showOverlay: false, options: .init(alertType: .error, style: .horizontal))
         }
         .preferredColorScheme(.dark)
         .previewLayout(.sizeThatFits)

@@ -9,7 +9,7 @@ import Foundation
 
 public enum AlertStyle: String {
     case error = "xmark.octagon"
-    case warning = "exclamationmark.triangle"
+    case success = "checkmark.circle"
 }
 
 public struct AlertOptions {
