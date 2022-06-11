@@ -45,6 +45,23 @@ extension View {
         }
     }
     
+    /// This will return an Alert from LoaderKit.
+    /// This functions helps you to present `Alert` on top of the View Hierarchy
+    /// - Parameters:
+    ///   - isPresented: Bool to indicate to show Alert on the View heriracy
+    ///   - content: Closure to show `Alert` and display alert message
+    public func showAlert<T: View>(isPresented: Binding<Bool>, for duration: TimeInterval = 2.5, content: () -> T) -> some View {
+        ZStack {
+            self.allowsHitTesting(!isPresented.wrappedValue)
+            if isPresented.wrappedValue {
+                content()
+                    .dismiss(delay: duration) {
+                        isPresented.wrappedValue = false
+                    }
+            }
+        }
+    }
+    
     internal func dismiss(delay: TimeInterval, completion: @escaping () -> Void) -> some View {
         self.onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
