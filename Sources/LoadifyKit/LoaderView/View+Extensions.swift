@@ -8,12 +8,33 @@
 import SwiftUI
 
 extension View {
+    
+    /// This will return a loader from LoaderKit.
+    /// This functions helps you to present `Loader` on top of the View Hierarchy
+    /// - Parameters:
+    ///   - title: Title of the loader to be displayed.
+    ///   - showOverlay: Bool property to add black background behind the loader when it is active. By default it is false
+    ///   - isPresented: isPresented is used to toggle the loader's state
+    public func showLoader(
+        _ title: String,
+        shouldShowOverlay: Bool = false,
+        isPresented: Binding<Bool>
+    ) -> some View {
+        ZStack {
+            self.allowsHitTesting(!isPresented.wrappedValue)
+            if isPresented.wrappedValue {
+                Loader(title: title, showOverlay: shouldShowOverlay)
+            }
+        }
+    }
+    
     /// This will return a loader from LoaderKit.
     /// This functions helps you to register loader in the rootView and can be acessible by creating and instance of the **LoaderViewAction**
     /// - Parameters:
     ///   - loaderAction: Lifecycle of the loaderAction
     ///   - showOverlay: Bool property to add black background behind the loader when it is active. By default it is false
     ///   - options: This gives some View of type LoaderView
+    @available(*, deprecated, message: "use showLoader instead.")
     public func addLoaderView(
         for loaderAction: LoaderViewAction,
         showOverlay: Bool = false,

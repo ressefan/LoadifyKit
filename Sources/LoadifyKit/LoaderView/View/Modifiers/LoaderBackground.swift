@@ -10,7 +10,6 @@ import SwiftUI
 struct LoaderBackground: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .frame(maxWidth: 230, maxHeight: 80)
             .padding()
             .background(Blur())
             .cornerRadius(12)

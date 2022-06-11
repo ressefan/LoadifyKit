@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(*, deprecated, message: "use Loader instead")
 public struct LoaderView: View {
     
     public let title: String
@@ -31,9 +32,13 @@ public struct LoaderView: View {
             overlayView(showOverlay)
             switch options.style {
             case .horizontal:
-                horizontalLoader.loaderBackground()
+                horizontalLoader
+                    .frame(maxWidth: 230, maxHeight: 80)
+                    .loaderBackground()
             case .vertical:
-                verticalLoader.loaderBackground()
+                verticalLoader
+                    .frame(maxWidth: 230, maxHeight: 80)
+                    .loaderBackground()
             }
         }
     }
@@ -72,7 +77,7 @@ public struct LoaderView: View {
     }
 }
 
-struct Loader_Previews: PreviewProvider {
+struct LoaderView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             LoaderView(title: "Fetching details...", subTitle: nil, showOverlay: false, options: .init(style: .vertical))
