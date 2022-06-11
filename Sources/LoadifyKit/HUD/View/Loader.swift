@@ -23,10 +23,20 @@ public struct Loader: View {
     public var body: some View {
         ZStack {
             overlayView(showOverlay)
-            ProgressView(title)
-                .font(.caption)
-                .loaderBackground()
+            VStack {
+                ProgressView()
+                loaderTitle
+                    .padding(.top, 6)
+                
+            }
+            .loaderBackground()
         }
+    }
+    
+    private var loaderTitle: some View {
+        Text(title)
+            .font(.caption)
+            .foregroundColor(.gray)
     }
     
     private func overlayView(_ canShowOverlay: Bool) -> some View {
@@ -39,6 +49,7 @@ struct Loader_Previews: PreviewProvider {
         Group {
             Loader(title: "LOADING", showOverlay: false)
             Loader(title: "LOADING", showOverlay: false)
+                .previewDevice("iPhone SE (3rd generation)")
         }
         .preferredColorScheme(.dark)
         .previewLayout(.sizeThatFits)

@@ -77,6 +77,7 @@ public struct LoaderView: View {
     }
 }
 
+@available(*, deprecated, message: "use Loader_Previews instead")
 struct LoaderView_Previews: PreviewProvider {
     static var previews: some View {
         Group {

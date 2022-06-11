@@ -28,6 +28,31 @@ extension View {
         }
     }
     
+    /// This will return an Alert from LoaderKit.
+    /// This functions helps you to present `Alert` on top of the View Hierarchy
+    /// - Parameters:
+    ///   - item: Error item to be displayed.
+    ///   - content: Closure to show `Alert` and display error message
+    public func showAlert<T: View>(item: Binding<Error?>, for duration: TimeInterval = 2.5, content: (Error) -> T) -> some View {
+        ZStack {
+            self.allowsHitTesting(item.wrappedValue != nil ? false : true)
+            if let error = item.wrappedValue {
+                content(error)
+                    .dismiss(delay: duration) {
+                        item.wrappedValue = nil
+                    }
+            }
+        }
+    }
+    
+    internal func dismiss(delay: TimeInterval, completion: @escaping () -> Void) -> some View {
+        self.onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                completion()
+            }
+        }
+    }
+    
     /// This will return a loader from LoaderKit.
     /// This functions helps you to register loader in the rootView and can be acessible by creating and instance of the **LoaderViewAction**
     /// - Parameters:
@@ -53,6 +78,7 @@ extension View {
         }
     }
     
+    @available(*, deprecated, message: "use showAlert instead.")
     public func addAlertView(
         for alertAction: AlertViewAction
     ) -> some View {
@@ -69,8 +95,14 @@ extension View {
         }
     }
     
-    func loaderBackground() -> some View {
-        modifier(LoaderBackground())
+    /// Uses VisualEffectsView to blur the background beneath the views
+    internal func loaderBackground(colors: [Color]? = nil) -> some View {
+        modifier(LoaderBackground(colors: colors))
+    }
+    
+    /// Limits the font size for selected lines
+    internal func reduceFontSize(for line: Int) -> some View {
+        modifier(FontReducer(line: line))
     }
 }
 

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(*, deprecated, message: "use AlertUI instead.")
 public struct AlertView: View {
     
     public let title: String
@@ -80,6 +81,7 @@ public struct AlertView: View {
     }
 }
 
+@available(*, deprecated, message: "use AlertUI_Preview instead")
 struct AlertView_Previews: PreviewProvider {
     static var previews: some View {
         Group {

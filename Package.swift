@@ -11,6 +11,6 @@ let package = Package(
     ],
     dependencies: [],
     targets: [
-        .target(name: "LoadifyKit", dependencies: [], path: "Sources/LoadifyKit/LoaderView"),
+        .target(name: "LoadifyKit", dependencies: [], path: "Sources/LoadifyKit/HUD", resources: [.process("Resources")]),
     ]
 )
