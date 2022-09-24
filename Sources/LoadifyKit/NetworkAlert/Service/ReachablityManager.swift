@@ -10,17 +10,16 @@ import Network
 
 public final class ReachablityManager: ObservableObject {
     
-    @Published var isConnected = true
+    @Published public var isConnected = true
+    
+    public var connectionDescription: String {
+        isConnected ? "Back online" : "No connection"
+    }
     
     private let monitor = NWPathMonitor()
     private let queue = DispatchQueue(label: "ReachablityManager")
     
-    var connectionDescription: String? {
-        if !isConnected {
-            return "It looks like you're not connected to the internet"
-        }
-        return nil
-    }
+    
     
     public init() {
         startMonitoring()
