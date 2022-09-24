@@ -9,8 +9,12 @@ let package = Package(
     products: [
         .library(name: "LoadifyKit", targets: ["LoadifyKit"]),
     ],
-    dependencies: [],
+    dependencies: [
+        .package(url: "git@github.com:VishwaiOSDev/FontKit.git", .upToNextMinor(from: "0.0.5")),
+    ],
     targets: [
-        .target(name: "LoadifyKit", dependencies: [], path: "Sources/LoadifyKit/HUD", resources: [.process("Resources")]),
+        .target(name: "LoadifyKit", dependencies: [
+            .product(name: "FontKit", package: "FontKit"),
+        ], resources: [.process("Others/Resources")]),
     ]
 )
