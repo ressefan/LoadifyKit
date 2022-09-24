@@ -19,8 +19,6 @@ public final class ReachablityManager: ObservableObject {
     private let monitor = NWPathMonitor()
     private let queue = DispatchQueue(label: "ReachablityManager")
     
-    
-    
     public init() {
         startMonitoring()
     }
