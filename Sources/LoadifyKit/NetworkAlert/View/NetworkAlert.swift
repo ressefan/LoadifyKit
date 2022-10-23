@@ -68,4 +68,16 @@ extension View {
         modifier(NetworkAlert(isReachable: isReachable, message: message))
     }
 }
+
+struct NetworkAlert_Previews: PreviewProvider {
+    static var previews: some View {
+        ZStack {
+            Color.blue.edgesIgnoringSafeArea(.all)
+            Text("Hello World!")
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .showNetworkAlert(when: true, with: "Back online")
+    }
+}
 #endif
+
