@@ -56,10 +56,12 @@ extension View {
 
 struct ProgressUI_Previews: PreviewProvider {
     static var previews: some View {
-        VStack {
+        ZStack {
+            Color.blue.edgesIgnoringSafeArea(.all)
             Text("Loadify")
                 .font(.largeTitle)
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .showProgressBar(when: .constant(true), progressValue: .constant(0.50))
     }
 }
