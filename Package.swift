@@ -15,6 +15,6 @@ let package = Package(
     targets: [
         .target(name: "LoadifyKit", dependencies: [
             .product(name: "FontKit", package: "FontKit"),
-        ], resources: [.process("Others/Resources")]),
+        ], resources: [.process("Others/Resources")])
     ]
 )
