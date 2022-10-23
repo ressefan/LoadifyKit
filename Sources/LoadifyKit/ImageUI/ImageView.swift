@@ -47,3 +47,16 @@ public struct ImageView<Placeholder: View, ConfiguredImage: View>: View {
         }
     }
 }
+
+struct ImageView_Previews: PreviewProvider {
+    static var previews: some View {
+        let imageURL = "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/imac-refurb-about-201810?wid=984&hei=859&fmt=jpeg&qlt=90&.v=1541530952135"
+        ImageView(urlString: imageURL) {
+            Image(systemName: "applelogo")
+                .imageScale(.large)
+        } image: { imageView in
+            imageView
+                .resizable()
+        }
+    }
+}
