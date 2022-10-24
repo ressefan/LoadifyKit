@@ -8,11 +8,9 @@
 import SwiftUI
 
 public struct ImageView<Placeholder: View, ConfiguredImage: View>: View {
-    
-    @StateObject var imageLoader = ImageLoaderService()
+        
+    @StateObject var imageLoader: ImageLoaderService
     @State private var uiImage: UIImage?
-    
-    public var urlString: String
     
     private let placeholder: () -> Placeholder
     private let image: (Image) -> ConfiguredImage
@@ -22,20 +20,24 @@ public struct ImageView<Placeholder: View, ConfiguredImage: View>: View {
         @ViewBuilder placeholder: @escaping () -> Placeholder,
         @ViewBuilder image: @escaping (Image) -> ConfiguredImage
     ) {
-        self.urlString = urlString
         self.placeholder = placeholder
-        self.image = image
+        self.image = image    
+        self._imageLoader = StateObject(wrappedValue: ImageLoaderService(urlString: urlString))
     }
     
     public var body: some View {
-        imageContent
-            .onChange(of: imageLoader.data) { data in
-                guard let data else { return }
-                self.uiImage = UIImage(data: data)
+        ZStack {
+            /// Shows progressView if the image is not yet downloaded from the `URLSession`
+            if imageLoader.shouldShowLoader {
+                ProgressView()
+            } else {
+                /// Actual `imageContent` downloaded from the `URLSession` or `Placeholder` image.
+                imageContent
             }
-            .onAppear {
-                imageLoader.loadData(from: urlString)
-            }
+        }
+        .onChange(of: imageLoader.uiImage, perform: { imageData in
+            self.uiImage = imageData
+        })
     }
     
     @ViewBuilder
