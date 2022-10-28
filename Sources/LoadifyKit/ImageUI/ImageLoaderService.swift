@@ -10,8 +10,13 @@ import UIKit
 
 final class ImageLoaderService: ObservableObject {
     
-    @Published var uiImage: UIImage = UIImage()
-    @Published var shouldShowLoader: Bool = false
+    public enum ImageStatus {
+        case success(uiImage: UIImage)
+        case failure
+        case loading
+    }
+    
+    @Published var imageStatus: ImageStatus = .loading
     
     convenience init(urlString: String?) {
         self.init()
@@ -19,27 +24,29 @@ final class ImageLoaderService: ObservableObject {
     }
     
     func loadData(from urlString: String?) {
-        setLoaderState(to: true)
+        setImageStatus(to: .loading)
         guard let urlString, let url = URL(string: urlString) else {
-            return setLoaderState(to: false)
+            return setImageStatus(to: .failure)
         }
         let task = URLSession.shared.dataTask(with: url) { [weak self] data, _, _ in
             guard let self else { return }
-            guard let data else { return self.setLoaderState(to: false) }
+            guard let data else { return self.setImageStatus(to: .failure) }
             DispatchQueue.main.async { [weak self] in
                 guard let self else { return }
-                self.uiImage = UIImage(data: data) ?? UIImage()
-                self.setLoaderState(to: false)
+                guard let uiImage = UIImage(data: data) else {
+                    return self.setImageStatus(to: .failure)
+                }
+                self.setImageStatus(to: .success(uiImage: uiImage))
             }
         }
-        setLoaderState(to: false)
+        setImageStatus(to: .loading)
         task.resume()
     }
     
-    private func setLoaderState(to loaderState: Bool) {
+    private func setImageStatus(to imageStatus: ImageStatus) {
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
-            self.shouldShowLoader = loaderState
+            self.imageStatus = imageStatus
         }
     }
 }
