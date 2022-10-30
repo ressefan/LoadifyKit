@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FontKit
 
 public enum AlertType: String {
     case error = "x.circle.fill"
@@ -39,14 +40,12 @@ public struct AlertUI: View {
     private var alertContentView: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(title)
-                .font(.title3)
-                .fontWeight(.heavy)
+                .font(.inter(.semibold(size: 16)))
                 .foregroundColor(alertType == .success ? Colors.green : Colors.red)
                 .reduceFontSize(for: 1)
             if let subtitle = subtile {
                 Text(subtitle)
-                    .font(.system(size: 14))
-                    .fontWeight(.medium)
+                    .font(.inter(.medium(size: 14)))
                     .foregroundColor(.gray)
                     .reduceFontSize(for: 2)
             }

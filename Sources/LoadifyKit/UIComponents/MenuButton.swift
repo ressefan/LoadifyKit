@@ -32,10 +32,10 @@ public struct MenuButton: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
             Spacer()
             Image(systemName: arrowDirection.rawValue)
+                .font(.subheadline)
         }
         .padding(.horizontal, 16)
         .frame(maxWidth: .infinity, maxHeight: 56)
-        .font(.subheadline)
         .foregroundColor(LoadifyColors.greyText)
         .background(Color.black)
         .cornerRadius(10)
