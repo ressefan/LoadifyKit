@@ -54,13 +54,13 @@ public struct ChannelView: View {
             .lineLimit(2)
             .minimumScaleFactor(0.5)
         subscriberCountView
-            .font(.inter(.regular(size: 12)))
             .foregroundColor(LoadifyColors.greyText)
     }
     
     @ViewBuilder
     private var subscriberCountView: some View {
         Text("\(subscriberCount) subscribers")
+            .font(.inter(.regular(size: 12)))
     }
 }
 

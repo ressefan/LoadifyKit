@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FontKit
 
 public struct InfoView: View {
     
@@ -20,11 +21,10 @@ public struct InfoView: View {
     public var body: some View {
         VStack {
             Text("\(title)")
-                .font(.headline)
-                .fontWeight(.heavy)
+                .font(.inter(.bold(size: 18)))
                 .lineLimit(1)
             Text("\(subTitle)")
-                .font(.footnote)
+                .font(.inter(.regular(size: 14)))
                 .foregroundColor(LoadifyColors.greyText)
         }
         .foregroundColor(.white)
