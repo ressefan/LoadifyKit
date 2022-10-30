@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FontKit
 
 public struct Loader: View {
     
@@ -35,7 +36,7 @@ public struct Loader: View {
     
     private var loaderTitle: some View {
         Text(title)
-            .font(.caption)
+            .font(.inter(.regular(size: 12)))
             .foregroundColor(.gray)
     }
     
