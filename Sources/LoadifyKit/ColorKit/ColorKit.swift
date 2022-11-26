@@ -16,7 +16,7 @@ extension LoadifyKit {
         public static let blueAccent = Color("blue_accent", bundle: .module)
         public static let errorRedGradient = Color("error_red_gradient", bundle: .module)
         public static let errorRed = Color("error_red", bundle: .module)
-        public static let successGreenGradient = Color("successG_green_gradient", bundle: .module)
+        public static let successGreenGradient = Color("success_green_gradient", bundle: .module)
         public static let successGreen = Color("success_green", bundle: .module)
     }
 }
